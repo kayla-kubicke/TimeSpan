@@ -5,9 +5,12 @@
 
 //
 class TimeSpan {
-	//private:
+	private:
+		double currentHours; // Can I add default values?
+		double currentMinutes;
+		double currentSeconds;
 
-	//public:
+	public:
 		// Default Constructor:
 		// Precondition:
 		// Postcondition:
@@ -16,18 +19,19 @@ class TimeSpan {
 		// Constructor:
 		// Precondition:
 		// Postcondition:
-		// NOTES: Respect rounding requirements. "Round answer to nearest second (50.9 becomes 51)"
-		TimeSpan(double hours, double minutes, double seconds); // FIX: overload; must accept int, float, and double
+		TimeSpan(double initialSeconds); // FIX: overload; must accept int, float, and double.
 
 		// Constructor:
 		// Precondition:
 		// Postcondition:
-		TimeSpan(double minutes, double seconds); // FIX: overload; must accept int, float, and double
+		TimeSpan(double initialMinutes, double initialSeconds); // FIX: overload; must accept int, float, and double.
 
 		// Constructor:
 		// Precondition:
 		// Postcondition:
-		TimeSpan(double seconds); // FIX: overload; must accept int, float, and double
+		// NOTE: Respect rounding requirements. "Round answer to nearest second (50.9 becomes 51)"
+		TimeSpan(double initialHours, double initialMinutes, double initialSeconds); // FIX: overload; must accept int, float, and double.
+
 
 		// Gets TimeSpan's hours.
 		// Precondition:
