@@ -9,7 +9,7 @@ int main()
 	// Create default TimeSpan object.
 	TimeSpan defaultTimeSpan;
 
-	cout << "Memory Address of TimeSpan Object: " << &defaultTimeSpan << endl;
+	cout << "Hours: " << defaultTimeSpan.getHours() << ", Minutes: " << defaultTimeSpan.getMinutes() << ", Seconds: " << defaultTimeSpan.getSeconds() << endl;
 
 	return 0;
 }
