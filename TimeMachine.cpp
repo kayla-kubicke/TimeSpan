@@ -10,6 +10,13 @@ int main()
 	TimeSpan defaultTimeSpan;
 
 	cout << "Hours: " << defaultTimeSpan.getHours() << ", Minutes: " << defaultTimeSpan.getMinutes() << ", Seconds: " << defaultTimeSpan.getSeconds() << endl;
+	defaultTimeSpan.setTime(45, 2.1, 7.0);
+	cout << "Hours: " << defaultTimeSpan.getHours() << ", Minutes: " << defaultTimeSpan.getMinutes() << ", Seconds: " << defaultTimeSpan.getSeconds() << endl;
+
+
+	float testFloat = static_cast<float>(2.5435856453);
+	TimeSpan anotherTS(testFloat, 1);
+	cout << "Hours: " << anotherTS.getHours() << ", Minutes: " << anotherTS.getMinutes() << ", Seconds: " << anotherTS.getSeconds() << endl;
 
 	return 0;
 }

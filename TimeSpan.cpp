@@ -10,6 +10,21 @@ TimeSpan::TimeSpan()
 	this->seconds = 0;
 }
 
+// UPDATE: Send to setTime(...)?
+TimeSpan::TimeSpan(double initialMinutes, double initialSeconds)
+{
+	this->hours = 0;
+	this->minutes = initialMinutes;
+	this->seconds = initialSeconds;
+}
+
+TimeSpan::TimeSpan(double initialHours, double initialMinutes, double initialSeconds)
+{
+	this->hours = initialHours;
+	this->minutes = initialMinutes;
+	this->seconds = initialSeconds;
+}
+
 // CHECK: If NOTE is correct.
 // NOTE: 'const', in this position, ensures the member function will
 // not alter the object being referenced.
@@ -28,4 +43,14 @@ int TimeSpan::getMinutes() const
 int TimeSpan::getSeconds() const
 {
 	return seconds;
+}
+
+// UPDATE: Logic
+bool TimeSpan::setTime(double newHours, double newMinutes, double newSeconds)
+{
+	this->hours = newHours;
+	this->minutes = newMinutes;
+	this->seconds = newSeconds;
+
+	return true; // CHECK: Is this the way to write the boolean return; does it need 'if' wrap?
 }
