@@ -5,10 +5,12 @@
 #define TIMESPAN_H
 // Preprocessor directive, newer method
 // #pragma once
-
+#include <iostream>
+using namespace std;
 
 class TimeSpan
 {
+	friend ostream& operator <<(ostream &outStream, const TimeSpan &time);
 public:
 	// Default constructor
 	// Creates TimeSpan object, TimeSpan(0, 0, 0).

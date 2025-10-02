@@ -1,5 +1,4 @@
 // Kayla Kubicke, CSS 342, TimeSpan
-
 #include "TimeSpan.h"
 
 // Default constructor
@@ -53,4 +52,11 @@ bool TimeSpan::setTime(double newHours, double newMinutes, double newSeconds)
 	this->seconds = newSeconds;
 
 	return true; // CHECK: Is this the way to write the boolean return; does it need 'if' wrap?
+}
+
+// io method
+ostream& operator <<(ostream &outStream, const TimeSpan &time)
+{
+	outStream << "Hours: " << time.hours << ", Minutes: " << time.minutes << ", Seconds: " << time.seconds;
+	return outStream;
 }
