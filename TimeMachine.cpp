@@ -6,20 +6,23 @@ using namespace std;
 
 int main()
 {
-	// Create default TimeSpan object.
-	TimeSpan defaultTimeSpan;
+	// START:Test Objects
+	// TimeSpan(1, 2, 3)
+	// Output: Hours: 1, Minutes: 2, Seconds: 3
+	
+	// TimeSpan(1.5, 4, -10)
+	// Output: Hours: 1, Minutes: 33, Seconds: 50
 
-	cout << "Hours: " << defaultTimeSpan.getHours() << ", Minutes: " << defaultTimeSpan.getMinutes() << ", Seconds: " << defaultTimeSpan.getSeconds() << endl;
-	cout << defaultTimeSpan << endl;
-	defaultTimeSpan.setTime(45, 2.1, 7.0);
-	cout << "Hours: " << defaultTimeSpan.getHours() << ", Minutes: " << defaultTimeSpan.getMinutes() << ", Seconds: " << defaultTimeSpan.getSeconds() << endl;
-	cout << defaultTimeSpan << endl;
+	// TimeSpan(1, -380, 24.5)
+	// Output: Hours:-5, Minutes: -19, Seconds: -36
 
+	// TimeSpan(-40,50, -20)
+	// Output: Hours: -39, Minutes: -10, Seconds: -20
 
-	float testFloat = static_cast<float>(2.5435856453);
-	TimeSpan anotherTS(testFloat, 1);
-	cout << "Hours: " << anotherTS.getHours() << ", Minutes: " << anotherTS.getMinutes() << ", Seconds: " << anotherTS.getSeconds() << endl;
-	cout << anotherTS << endl;
+	// TimeSpan(7, 3)
+	// Output: Hours: 0, Minutes: 7, Seconds: 3
+	// END: Test Objects
+
 
 	return 0;
 }
