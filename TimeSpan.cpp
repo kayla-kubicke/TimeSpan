@@ -1,20 +1,30 @@
 // Kayla Kubicke, CSS 342, TimeSpan
+// REMOVE
+#include <iostream>
+#include<cmath>
+// REMOVE
 #include "TimeSpan.h"
+// REMOVE
+using namespace std;
+// REMOVE
 
-// Default constructor
-TimeSpan::TimeSpan()
+//
+// Constructors
+TimeSpan::TimeSpan() // Default constructor
 {
 	this->hours = 0;
 	this->minutes = 0;
 	this->seconds = 0;
 }
 
-// UPDATE: Send to setTime(...)?
 TimeSpan::TimeSpan(double initialMinutes, double initialSeconds)
 {
 	this->hours = 0;
 	this->minutes = initialMinutes;
 	this->seconds = initialSeconds;
+
+	// NOTE: 'this' is a pointer.
+	this->setTime(hours, initialMinutes, initialSeconds);
 }
 
 TimeSpan::TimeSpan(double initialHours, double initialMinutes, double initialSeconds)
@@ -22,13 +32,12 @@ TimeSpan::TimeSpan(double initialHours, double initialMinutes, double initialSec
 	this->hours = initialHours;
 	this->minutes = initialMinutes;
 	this->seconds = initialSeconds;
+
+	this->setTime(initialHours, initialMinutes, initialSeconds);
 }
 
-// CHECK: If NOTE is correct.
-// NOTE: 'const', in this position, ensures the member function will
-// not alter the object being referenced.
-// As to say, 'const' will protect the TimeSpan object
-// from modification.
+//
+// Member Functions
 int TimeSpan::getHours() const
 {
 	return hours;
@@ -44,17 +53,47 @@ int TimeSpan::getSeconds() const
 	return seconds;
 }
 
-// UPDATE: Logic
 bool TimeSpan::setTime(double newHours, double newMinutes, double newSeconds)
 {
+	double totalSeconds = static_cast<double>(0.0);
+
+	// UPDATE: Update logic to use overloading operators
+
+	//
+	// START: Calculate totalSeconds
+	totalSeconds += 60*60*newHours;
+	totalSeconds += 60*newMinutes;
+	totalSeconds += newSeconds;
+	// END: Calculate totalSeconds
+	//
+
+	//
+	// START: Conversion
+	// Hours
+	newHours = totalSeconds/(60*60);
+	totalSeconds -= (int)newHours*60*60;
+
+	// Minutes
+	newMinutes = totalSeconds/60;
+	totalSeconds -= (int)newMinutes*60;
+
+	// Seconds
+	newSeconds = round(totalSeconds);
+	//END: Conversion
+	//
+
 	this->hours = newHours;
 	this->minutes = newMinutes;
 	this->seconds = newSeconds;
 
-	return true; // CHECK: Is this the way to write the boolean return; does it need 'if' wrap?
+	return true;
 }
 
-// io method
+//
+// Operator overloaders
+
+//
+// Friend io method
 ostream& operator <<(ostream &outStream, const TimeSpan &time)
 {
 	outStream << "Hours: " << time.hours << ", Minutes: " << time.minutes << ", Seconds: " << time.seconds;

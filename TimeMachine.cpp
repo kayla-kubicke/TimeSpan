@@ -66,7 +66,7 @@ int main()
 	TimeSpan anotherMixed(1, -380, 24.5);
 	string outputAnotherMixed = "Hours: " + to_string(anotherMixed.getHours()) + ", Minutes: " + to_string(anotherMixed.getMinutes()) + ", Seconds: " + to_string(anotherMixed.getSeconds());
 
-	if(outputAnotherMixed == "Hours:-5, Minutes: -19, Seconds: -36")
+	if(outputAnotherMixed == "Hours: -5, Minutes: -19, Seconds: -36")
 	{
 		cout << "anotherMixed Passed\n" << endl;
 	}
