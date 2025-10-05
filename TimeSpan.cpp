@@ -55,42 +55,44 @@ int TimeSpan::getSeconds() const
 
 bool TimeSpan::setTime(double newHours, double newMinutes, double newSeconds)
 {
-	double totalSeconds = static_cast<double>(0.0);
-
-	// UPDATE: Update logic to use overloading operators
-
-	//
-	// START: Calculate totalSeconds
-	totalSeconds += 60*60*newHours;
-	totalSeconds += 60*newMinutes;
-	totalSeconds += newSeconds;
-	// END: Calculate totalSeconds
-	//
-
-	//
-	// START: Conversion
-	// Hours
-	newHours = totalSeconds/(60*60);
-	totalSeconds -= (int)newHours*60*60;
-
-	// Minutes
-	newMinutes = totalSeconds/60;
-	totalSeconds -= (int)newMinutes*60;
-
-	// Seconds
-	newSeconds = round(totalSeconds);
-	//END: Conversion
-	//
-
-	this->hours = newHours;
-	this->minutes = newMinutes;
-	this->seconds = newSeconds;
+	seconds += round(60*60*newHours + 60*newMinutes);
+	hours = seconds/(60*60);
+	seconds -= hours*60*60;
+	minutes = seconds/60;
+	seconds -= minutes*60;
 
 	return true;
 }
 
 //
-// Operator overloaders
+// Operator overload methods
+// UPDATE: remove &time if not used
+TimeSpan TimeSpan::operator+(const TimeSpan &time) const
+{
+
+	return *this;
+}
+
+// TimeSpan& TimeSpan::operator-(const TimeSpan &time)
+// {
+// 	// what are we subtracting?
+// 	// we use subtraction to update totalSeconds.
+// 	return *this;
+// }
+// unary negation
+
+// ==
+// !=
+
+TimeSpan& TimeSpan::operator+=(const TimeSpan &time)
+{
+	return *this;
+}
+
+TimeSpan& TimeSpan::operator-=(const TimeSpan &time)
+{
+	return *this;
+}
 
 //
 // Friend io method

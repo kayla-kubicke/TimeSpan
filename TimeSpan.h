@@ -29,6 +29,12 @@ public:
 	// Returns true if time is set successfully.
 	bool setTime(double hours, double minutes, double seconds);
 
+	// Operator overloads
+	TimeSpan operator+(const TimeSpan &time) const; // UPDATE: remove &time
+	// TimeSpan operator-(const TimeSpan &time) const:
+	TimeSpan& operator+=(const TimeSpan &time);
+	TimeSpan& operator-=(const TimeSpan &time);
+
 private:
 	int hours;
 	int minutes;
