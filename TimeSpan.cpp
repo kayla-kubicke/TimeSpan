@@ -1,16 +1,9 @@
 // Kayla Kubicke, CSS 342, TimeSpan
-// REMOVE
-#include <iostream>
-#include<cmath>
-// REMOVE
 #include "TimeSpan.h"
-// REMOVE
-using namespace std;
-// REMOVE
 
 //
-// Constructors
-TimeSpan::TimeSpan() // Default constructor
+// START: Constructors
+TimeSpan::TimeSpan()
 {
 	this->hours = 0;
 	this->minutes = 0;
@@ -35,9 +28,11 @@ TimeSpan::TimeSpan(double initialHours, double initialMinutes, double initialSec
 
 	this->setTime(initialHours, initialMinutes, initialSeconds);
 }
+// END: Constructors
+//
 
 //
-// Member Functions
+// START: Getters/Setters
 int TimeSpan::getHours() const
 {
 	return hours;
@@ -53,51 +48,80 @@ int TimeSpan::getSeconds() const
 	return seconds;
 }
 
-bool TimeSpan::setTime(double newHours, double newMinutes, double newSeconds)
+bool TimeSpan::setTime(const double newHours, const double newMinutes, const double newSeconds)
 {
-	seconds += round(60*60*newHours + 60*newMinutes);
+	// No.
+	seconds = newSeconds;
+	seconds += 60*60*newHours+60*newMinutes;
 	hours = seconds/(60*60);
 	seconds -= hours*60*60;
 	minutes = seconds/60;
-	seconds -= minutes*60;
+	seconds -= round(minutes*60);
 
 	return true;
 }
+// END: Getters/Setters
+//
 
 //
-// Operator overload methods
-// UPDATE: remove &time if not used
-TimeSpan TimeSpan::operator+(const TimeSpan &time) const
+// START: Operator Overloads
+// Addition
+TimeSpan TimeSpan::operator+(const TimeSpan) const
+{
+	return *this;
+}
+
+// Subtraction
+TimeSpan TimeSpan::operator-(const TimeSpan) const
+{
+	return *this;
+}
+
+// Increment
+TimeSpan& TimeSpan::operator+=(const TimeSpan)
 {
 
 	return *this;
 }
 
-// TimeSpan& TimeSpan::operator-(const TimeSpan &time)
-// {
-// 	// what are we subtracting?
-// 	// we use subtraction to update totalSeconds.
-// 	return *this;
-// }
-// unary negation
-
-// ==
-// !=
-
-TimeSpan& TimeSpan::operator+=(const TimeSpan &time)
+// Decrement
+TimeSpan& TimeSpan::operator-=(const TimeSpan)
 {
 	return *this;
 }
 
-TimeSpan& TimeSpan::operator-=(const TimeSpan &time)
+// Equal
+bool TimeSpan::operator==(const TimeSpan &time) const
 {
+	return (this->hours == time.hours && this->minutes == time.minutes && this->seconds == time.seconds);
+}
+
+// Not Equal
+bool TimeSpan::operator!=(const TimeSpan &time) const
+{
+	return !(*this == time);
+}
+
+// Negation
+TimeSpan& TimeSpan::operator-()
+{
+	this->hours = -hours;
+	this->minutes = -minutes;
+	this->seconds= -seconds;
+
 	return *this;
 }
+// END: Operator Overloads
+//
 
 //
-// Friend io method
-ostream& operator <<(ostream &outStream, const TimeSpan &time)
+// START:Friend io
+ostream& operator<<(ostream &outStream, const TimeSpan &time)
 {
 	outStream << "Hours: " << time.hours << ", Minutes: " << time.minutes << ", Seconds: " << time.seconds;
 	return outStream;
 }
+
+// !!!: ADD >>
+// END; Friend io
+//

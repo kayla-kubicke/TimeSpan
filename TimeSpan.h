@@ -12,28 +12,35 @@ class TimeSpan
 {
 	friend ostream& operator <<(ostream &outStream, const TimeSpan &time);
 public:
-	// Default constructor
-	// Creates TimeSpan object, TimeSpan(0, 0, 0).
+	//
+	// START: Constructors
 	TimeSpan();
-
-	// NOTE: double can accept int or float.
 	TimeSpan(double seconds);
 	TimeSpan(double minutes, double seconds);
 	TimeSpan(double hours, double minutes, double seconds);
+	// END: Constructors
+	//
 	
-
+	//
+	// START: Getters/Setters
 	int getHours() const; // Returns the number of hours (int).
 	int getMinutes() const; // Returns the number of minutes (int).
 	int getSeconds() const; // Returns the number of seconds (int).
+	bool setTime(const double hours, const double minutes, const double seconds); // Returns true if time is set successfully.
+	// END: Getters/Setters
+	//
 
-	// Returns true if time is set successfully.
-	bool setTime(double hours, double minutes, double seconds);
-
-	// Operator overloads
-	TimeSpan operator+(const TimeSpan &time) const; // UPDATE: remove &time
-	// TimeSpan operator-(const TimeSpan &time) const:
-	TimeSpan& operator+=(const TimeSpan &time);
-	TimeSpan& operator-=(const TimeSpan &time);
+	//
+	// START:Operator overloads
+	TimeSpan operator+(const TimeSpan) const;
+	TimeSpan operator-(const TimeSpan) const;
+	TimeSpan& operator+=(const TimeSpan);
+	TimeSpan& operator-=(const TimeSpan);
+	bool operator==(const TimeSpan &time) const;
+	bool operator!=(const TimeSpan &time) const;
+	TimeSpan& operator-();
+	// END:Operator overloads
+	//
 
 private:
 	int hours;
