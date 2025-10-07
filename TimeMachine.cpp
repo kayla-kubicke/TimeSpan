@@ -55,7 +55,7 @@ int main()
 	else
 	{
 		cout << "!!!mixed Failed!!!\n" << endl;
-		cout << "mixed:" << mixed << endl;
+		// cout << mixed << endl;
 	}
 	// END: TimeSpan(1.5, 4, -10) Test
 	//

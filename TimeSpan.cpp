@@ -1,5 +1,12 @@
 // Kayla Kubicke, CSS 342, TimeSpan
+// REMOVE
+#include <iostream>
+// REMOVE
 #include "TimeSpan.h"
+// REMOVE
+using namespace std;
+// REMOVE
+
 
 //
 // START: Constructors
@@ -50,13 +57,14 @@ int TimeSpan::getSeconds() const
 
 bool TimeSpan::setTime(const double newHours, const double newMinutes, const double newSeconds)
 {
-	// No.
-	seconds = newSeconds;
-	seconds += 60*60*newHours+60*newMinutes;
-	hours = seconds/(60*60);
-	seconds -= hours*60*60;
-	minutes = seconds/60;
-	seconds -= round(minutes*60);
+	double totalSeconds = static_cast<double>(0);
+
+	totalSeconds = 60*60*newHours + 60*newMinutes + newSeconds;
+	hours = totalSeconds/(60*60);
+	totalSeconds -= 60*60*hours;
+	minutes = totalSeconds/60;
+	totalSeconds -= 60*minutes;
+	seconds = round(totalSeconds);
 
 	return true;
 }
