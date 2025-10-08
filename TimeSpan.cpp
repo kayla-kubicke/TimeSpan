@@ -1,11 +1,6 @@
 // Kayla Kubicke, CSS 342, TimeSpan
-// REMOVE
-#include <iostream>
-// REMOVE
 #include "TimeSpan.h"
-// REMOVE
-using namespace std;
-// REMOVE
+
 
 
 //
@@ -55,6 +50,7 @@ int TimeSpan::getSeconds() const
 	return seconds;
 }
 
+// Returns true if the hours, minutes, and seconds were normalized.
 bool TimeSpan::setTime(const double newHours, const double newMinutes, const double newSeconds)
 {
 	double totalSeconds = static_cast<double>(0);
@@ -74,27 +70,40 @@ bool TimeSpan::setTime(const double newHours, const double newMinutes, const dou
 //
 // START: Operator Overloads
 // Addition
-TimeSpan TimeSpan::operator+(const TimeSpan) const
+TimeSpan TimeSpan::operator+(const TimeSpan &time) const
 {
-	return *this;
+	TimeSpan newTime = *this;
+	newTime += time;
+
+	return newTime;
 }
 
 // Subtraction
-TimeSpan TimeSpan::operator-(const TimeSpan) const
+TimeSpan TimeSpan::operator-(const TimeSpan &time) const
 {
-	return *this;
+	TimeSpan newTime =*this;
+	newTime -= time;
+
+	return newTime;
 }
 
 // Increment
-TimeSpan& TimeSpan::operator+=(const TimeSpan)
+TimeSpan& TimeSpan::operator+=(const TimeSpan &time)
 {
+	hours += time.hours;
+	minutes += time.minutes;
+	seconds += time.seconds;
 
 	return *this;
 }
 
 // Decrement
-TimeSpan& TimeSpan::operator-=(const TimeSpan)
+TimeSpan& TimeSpan::operator-=(const TimeSpan &time)
 {
+	hours -= time.hours;
+	minutes -= time.minutes;
+	seconds -= time.seconds;
+
 	return *this;
 }
 
@@ -123,13 +132,19 @@ TimeSpan& TimeSpan::operator-()
 //
 
 //
-// START:Friend io
+// START: Friend io Methods
+// <<
 ostream& operator<<(ostream &outStream, const TimeSpan &time)
 {
 	outStream << "Hours: " << time.hours << ", Minutes: " << time.minutes << ", Seconds: " << time.seconds;
 	return outStream;
 }
 
-// !!!: ADD >>
-// END; Friend io
+// >>
+istream& operator>>(istream &inStream, TimeSpan &time)
+{
+	inStream >> time.hours >> time.minutes >> time.seconds;
+	return inStream;
+}
+// END: Friend io Methods
 //
